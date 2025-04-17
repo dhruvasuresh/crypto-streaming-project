@@ -73,7 +73,19 @@ POSTGRES_PASSWORD=your_password
 SPARK_MASTER=local[*]
 ```
 
-5. **Database Setup**
+5. **Kafka Topic Setup**
+Create the following Kafka topics before running the project:
+```bash
+# Create topics for different data types
+bin/kafka-topics.sh --create --topic crypto_prices --bootstrap-server localhost:9092
+bin/kafka-topics.sh --create --topic crypto_market_data --bootstrap-server localhost:9092
+bin/kafka-topics.sh --create --topic crypto_historical --bootstrap-server localhost:9092
+
+# Verify topics are created
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+```
+
+6. **Database Setup**
 ```sql
 CREATE DATABASE crypto_db;
 CREATE TABLE crypto_prices (
